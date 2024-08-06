@@ -191,8 +191,8 @@ const WaitList: React.FC = () => {
           }
 
           .cta-button {
-            background-color: #1B1A55;
-            color: #E5E7EB;
+            background-color: #E5E7EB; /* Changed background color to off-white */
+            color: #1B1A55; /* Changed text color to dark to contrast with the new background */
             padding: 15px 30px;
             border: none;
             border-radius: 50px;
@@ -203,9 +203,10 @@ const WaitList: React.FC = () => {
           }
 
           .cta-button:hover {
-            background-color: #2a2a8e;
+            background-color: #d1d5db; /* Slightly darker shade of off-white for hover effect */
             box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.6);
           }
+
 
           /* Modal Styles */
           .modal-overlay {
