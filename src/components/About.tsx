@@ -19,9 +19,9 @@ const About = () => {
           Discover, host, and engage in events with AI-powered recommendations and interactive features. Explore a vast universe of opportunities and earn badges and achievements as you participate, creating an immersive and rewarding experience.
         </p>
         <div className={styles.socialLinks}>
-          <a href="https://www.instagram.com/orbitfind" target="_blank" rel="noopener noreferrer">
+          {/* <a href="https://www.instagram.com/orbitfind" target="_blank" rel="noopener noreferrer">
             <img src="/insta.svg" alt="Instagram" className={styles.socialIcon} />
-          </a>
+          </a> */}
           <a href="https://www.linkedin.com/company/orbitfind" target="_blank" rel="noopener noreferrer">
             <img src="/linked.svg" alt="LinkedIn" className={styles.socialIcon} />
           </a>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaLinkedin, FaInstagram } from 'react-icons/fa';
+import { FaLinkedin } from 'react-icons/fa';
 import styles from './Footer.module.css'; // Import the CSS module for styling
 
 const Footer: React.FC = () => {
@@ -15,9 +15,9 @@ const Footer: React.FC = () => {
           <a href="https://www.linkedin.com/company/orbitfind" className={styles.footerIcon} aria-label="LinkedIn">
             <FaLinkedin />
           </a>
-          <a href="https://www.instagram.com/orbitfind" className={styles.footerIcon} aria-label="Instagram">
+          {/* <a href="https://www.instagram.com/orbitfind" className={styles.footerIcon} aria-label="Instagram">
             <FaInstagram />
-          </a>
+          </a> */}
         </div>
         <div className={styles.footerCopyright}>
           &copy; 2024 OrbitFind. All rights reserved.
