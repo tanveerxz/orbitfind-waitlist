@@ -44,6 +44,7 @@ const WaitList: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [city, setCity] = useState(''); // New state for city
   const { toast } = useToast(); // Initialize toast from Shadcn
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,13 +64,15 @@ const WaitList: React.FC = () => {
       // Add new document if email does not exist
       const docRef = await addDoc(collection(firestore, 'waitlist'), {
         email: email,
-        name: name
+        name: name,
+        city: city // Include city in the document
       });
 
       console.log('Document written with ID: ', docRef.id);
       toast({ title: 'Success!', description: 'Thank you! You have been added to the waitlist.' }); // Use Shadcn toast
       setEmail('');
       setName('');
+      setCity('');
       closeModal();
     } catch (error) {
       console.error('Error adding document: ', error);
@@ -139,13 +142,23 @@ const WaitList: React.FC = () => {
                   className="form-input"
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="city" className="form-label">City</label>
+                <input
+                  type="text"
+                  id="city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                  className="form-input"
+                />
+              </div>
               <button type="submit" className="submit-button">Submit</button>
             </form>
           </div>
         </div>
       )}
-
-      {/* Toast Container */}
+            {/* Toast Container */}
       <div id="toast-container" className="toast-container"></div>
 
       <style>
@@ -160,25 +173,25 @@ const WaitList: React.FC = () => {
             color: #E5E7EB;
             padding: 20px;
             text-align: center;
-            margin-top: 80px; /* Add margin-top to push content down */
             overflow: hidden; /* Prevent overflow caused by modal */
           }
 
           .globe-container {
-            width: 800px; /* Fixed width */
-            height: 600px; /* Fixed height */
+            width: 600px; /* Reduced width */
+            height: 450px; /* Reduced height */
             position: relative;
-            margin-bottom: 20px;
+            margin-top: 80px; /* Adjust this to move the globe down */
             overflow: hidden; /* Ensure content does not overflow */
             transition: opacity 0.3s ease, transform 0.3s ease;
           }
 
           .content {
             max-width: 600px;
+            margin-top: 20px; /* Adjust margin to avoid overlap with navbar */
           }
 
           .title {
-            font-size: 2rem;
+            font-size: 1.5rem; /* Reduced font size */
             font-weight: bold;
             margin-bottom: 10px;
             animation: fadeInUp 1s ease-out; /* Animation for title */
