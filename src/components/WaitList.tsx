@@ -96,9 +96,9 @@ const WaitList: React.FC = () => {
         <World globeConfig={globeConfig} data={globeData} />
       </div>
       <div className="content">
-        <h1 className="title">OrbitFind - Discover events in your orbit!</h1>
+        <h1 className="title">OrbitFind - Find exciting events in your orbit!</h1>
         <p className="description">
-          Be the first to know when our service is available. Enter your details to join our waitlist.
+        Level up your event discovery experience, earn badges, and create your own events for your community!        
         </p>
         <button
           onClick={openModal}
@@ -119,6 +119,9 @@ const WaitList: React.FC = () => {
               &times;
             </button>
             <h2 className="modal-title">Sign Up for the Waitlist</h2>
+            <p className="modal-description">
+              Sign up to our waitlist to get notified when we launch!
+            </p>
             <form onSubmit={handleSubmit} id="waitlist-form" className="waitlist-form">
               <div className="form-group">
                 <label htmlFor="name" className="form-label">Name</label>
@@ -158,7 +161,7 @@ const WaitList: React.FC = () => {
           </div>
         </div>
       )}
-            {/* Toast Container */}
+      {/* Toast Container */}
       <div id="toast-container" className="toast-container"></div>
 
       <style>
@@ -250,6 +253,13 @@ const WaitList: React.FC = () => {
             font-weight: bold;
             color: #E5E7EB;
             margin-bottom: 15px;
+            text-align: center;
+          }
+
+          .modal-description {
+            font-size: 1rem;
+            color: #E5E7EB;
+            margin-bottom: 20px;
             text-align: center;
           }
 
