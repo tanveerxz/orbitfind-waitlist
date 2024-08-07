@@ -44,6 +44,7 @@ const WaitList: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [email, setEmail] = useState('');
   const [name, setName] = useState('');
+  const [city, setCity] = useState(''); // Add city state
   const { toast } = useToast(); // Initialize toast from Shadcn
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -63,13 +64,15 @@ const WaitList: React.FC = () => {
       // Add new document if email does not exist
       const docRef = await addDoc(collection(firestore, 'waitlist'), {
         email: email,
-        name: name
+        name: name,
+        city: city // Include city in the document data
       });
 
       console.log('Document written with ID: ', docRef.id);
       toast({ title: 'Success!', description: 'Thank you! You have been added to the waitlist.' }); // Use Shadcn toast
       setEmail('');
       setName('');
+      setCity(''); // Clear city state
       closeModal();
     } catch (error) {
       console.error('Error adding document: ', error);
@@ -89,7 +92,7 @@ const WaitList: React.FC = () => {
 
   return (
     <div className="waitlist-container">
-      <div className="globe-container">
+      <div className="globe-container animate-globe-up">
         <World globeConfig={globeConfig} data={globeData} />
       </div>
       <div className="content">
@@ -139,6 +142,17 @@ const WaitList: React.FC = () => {
                   className="form-input"
                 />
               </div>
+              <div className="form-group">
+                <label htmlFor="city" className="form-label">City/Location</label>
+                <input
+                  type="text"
+                  id="city"
+                  value={city}
+                  onChange={(e) => setCity(e.target.value)}
+                  required
+                  className="form-input"
+                />
+              </div>
               <button type="submit" className="submit-button">Submit</button>
             </form>
           </div>
@@ -160,7 +174,7 @@ const WaitList: React.FC = () => {
             color: #E5E7EB;
             padding: 20px;
             text-align: center;
-            margin-top: 80px; /* Add margin-top to push content down */
+            margin-top: 40px; /* Adjusted margin-top to move content up */
             overflow: hidden; /* Prevent overflow caused by modal */
           }
 
@@ -170,7 +184,11 @@ const WaitList: React.FC = () => {
             position: relative;
             margin-bottom: 20px;
             overflow: hidden; /* Ensure content does not overflow */
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            animation: scaleUp 0.5s ease-out; /* Add the animation */
+          }
+
+          .animate-globe-up {
+            animation: globeSlideUp 1s ease-out;
           }
 
           .content {
@@ -206,7 +224,6 @@ const WaitList: React.FC = () => {
             background-color: #d1d5db; /* Slightly darker shade of off-white for hover effect */
             box-shadow: 0 0 15px 3px rgba(255, 255, 255, 0.6);
           }
-
 
           /* Modal Styles */
           .modal-overlay {
@@ -331,6 +348,17 @@ const WaitList: React.FC = () => {
             to {
               opacity: 1;
               transform: translateY(0);
+            }
+          }
+
+          @keyframes globeSlideUp {
+            from {
+              transform: translateY(100px); /* Start from below the viewport */
+              opacity: 0;
+            }
+            to {
+              transform: translateY(0); /* End at the normal position */
+              opacity: 1;
             }
           }
         `}
